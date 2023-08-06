@@ -24,6 +24,12 @@ public class CreateUserDTO {
     @NotBlank
     private String password;
 
+    @NotBlank
+    private String nombres;
+
+    @NotBlank
+    private String apellidos;
+
     private Set<String> roles;
 
 }

@@ -21,4 +21,5 @@ public class RoleEntity {
     @Enumerated(EnumType.STRING)
     private ERole name;
 
+
 }

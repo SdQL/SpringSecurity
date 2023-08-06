@@ -24,7 +24,6 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
-@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
 
     @Autowired
@@ -46,7 +45,8 @@ public class SecurityConfig {
         return httpSecurity
                 .csrf(config -> config.disable())
                 .authorizeHttpRequests(auth -> {
-                    auth.anyRequest().authenticated();
+                    auth.requestMatchers("/login").permitAll();
+                    auth.anyRequest().permitAll();
                 })
                 .sessionManagement(session -> {
                     session.sessionCreationPolicy(SessionCreationPolicy.STATELESS);

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Worksy - Usuarios</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/table-style.css">
+  <link href="assets/css/main.css" rel="stylesheet">
+
+</head>
+<body>
+<!-- ======= Header ======= -->
+<header id="header" class="header">
+  <div class="container-fluid">
+    <a href="index.html" class="logo d-flex align-items-center">
+      <h1>Worksy</h1>
+    </a>
+  </div>
+</header>
+<!-- End Header -->
+<section class="main-content">
+  <div class="container">
+    <h3>Tabla Usuarios</h3>
+
+    <table class="table" id="usuarios">
+      <thead>
+      <tr>
+        <th>Usuario</th>
+        <th>Nombres</th>
+        <th>Apellidos</th>
+        <th>Email</th>
+        <th>Acciones</th>
+      </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+    <!-- Button para pagina anterior y siguiente-->
+    <div class="row">
+      <div class="col-md-12">
+        <div class="float-right">
+          <span style="color: #D3D3D3">Página actual: <span id="currentPage">1</span></span>
+          <button style="color: #0e1d34" type="button" class="btn btn-primary" id="btn-prev" onclick="paginaAnterior()" disabled>Anterior</button>
+          <button style="color: #0e1d34" type="button" class="btn btn-primary" id="btn-next" onclick="paginaSiguiente()">Siguiente</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .swal2-popup {
+    background-color: #1a1a1a;
+    color: #fff;
+  }
+
+  .swal2-title {
+    color: #fff;
+  }
+
+  .swal2-content {
+    color: #fff;
+  }
+
+  .swal2-input,
+  .swal2-textarea {
+    background-color: #2a2a2a;
+    border: 1px solid #565656;
+    color: #fff;
+  }
+
+  .swal2-input::placeholder,
+  .swal2-textarea::placeholder {
+    color: #999;
+  }
+
+  .swal2-styled.swal2-confirm,
+  .swal2-styled.swal2-cancel {
+    border: 1px solid #565656;
+    color: #fff;
+  }
+
+  .swal2-styled.swal2-confirm {
+    background-color: #2ecc71;
+  }
+
+  .swal2-styled.swal2-cancel {
+    background-color: #e74c3c;
+  }
+
+  .swal2-styled:focus {
+    box-shadow: none !important;
+  }
+</style>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="assets/js/usuarios.js"></script>
+<script src="/assets/js/swal.js"></script>
+</body>
+</html>

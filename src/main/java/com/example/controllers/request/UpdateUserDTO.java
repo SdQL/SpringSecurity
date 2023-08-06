@@ -27,9 +27,8 @@ public class UpdateUserDTO {
     @NotBlank
     private String username;
 
-    @NotBlank
-    private String password;
+    private String nombres;
 
-    private Set<String> roles;
+    private String apellidos;
 
 }
