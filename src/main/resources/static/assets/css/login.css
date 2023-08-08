@@ -29,6 +29,7 @@ input:focus + .validation-msg {
 
 body {
     background-image: linear-gradient(to right bottom, var(--color-default), var(--color-secondary));
+    line-height: 20px;
 }
 
 input, button {
@@ -74,6 +75,7 @@ input, button {
 }
 
 h2 {
+    color: #0a0d13;
     width: 100%;
     font-size: 30px;
     text-align: center;
@@ -145,6 +147,7 @@ button {
 }
 
 .social-media {
+    color: #0a0d13;
     width: 100%;
     text-align: center;
     margin-top: 20px;
@@ -238,6 +241,7 @@ button {
 }
 
 .img-text h2 {
+    color: #fff;
     margin-bottom: 10px;
     font-weight: normal;
 }

@@ -45,7 +45,7 @@ public class SecurityConfig {
         return httpSecurity
                 .csrf(config -> config.disable())
                 .authorizeHttpRequests(auth -> {
-                    auth.requestMatchers("/login").permitAll();
+                    auth.requestMatchers("/login","/createUser").permitAll();
                     auth.anyRequest().permitAll();
                 })
                 .sessionManagement(session -> {

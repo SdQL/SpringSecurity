@@ -51,7 +51,7 @@ public class PrincipalController {
 
         if(userEntityOptional.isPresent()){
             return ResponseEntity.ok(userEntityOptional.get());
-        }else {
+        } else {
             return ResponseEntity.notFound().build();
         }
     }

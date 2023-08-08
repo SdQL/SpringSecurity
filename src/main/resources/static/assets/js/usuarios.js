@@ -2,7 +2,6 @@ $(document).ready(function () {
     cargarUsuarios();
     $('#users').DataTable();
     //actualizarEmailDelUsuario();
-
 });
 
 function getHeaders() {
