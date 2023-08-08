@@ -148,4 +148,12 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('load', () => {
     aos_init();
   });
+  if (window.location.hash === '#sign-up') {
+    // Encuentra el span y haz clic en él
+    var spanRegistro = document.querySelector('.img-btn .m-up');
+    if (spanRegistro) {
+      spanRegistro.click();
+    }
+  }
+
 });

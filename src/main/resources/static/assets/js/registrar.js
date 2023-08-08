@@ -54,8 +54,9 @@ async function registrarUsuario() {
                 icon: "success",
                 showConfirmButton: false,
                 timer: 1500
-            })
-            location.href = "index.html";
+            }).then(function () {
+                location.href = "index.html";
+            });
         }
     }catch (error) {
         console.log(error);
