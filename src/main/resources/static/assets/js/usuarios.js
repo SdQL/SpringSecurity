@@ -1,15 +1,21 @@
 $(document).ready(function () {
     cargarUsuarios();
     $('#users').DataTable();
-    //actualizarEmailDelUsuario();
+
 });
+
+actualizarUsernameDelUsuario();
 
 function getHeaders() {
     return {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'Authorization': localStorage.token
+        'Authorization': 'Bearer ' + localStorage.token
     };
+}
+
+function actualizarUsernameDelUsuario() {
+    document.getElementById("userDropdown").outerHTML = localStorage.username;
 }
 
 let currentPage = 1;
@@ -17,7 +23,10 @@ const usersPerPage = 6;
 let totalPages = 1;
 async function cargarUsuarios() {
     try {
-        const response = await fetch(`/getUsuarios?page=${currentPage}&pageSize=${usersPerPage}`);
+        const response = await fetch(`/getUsuarios?page=${currentPage}&pageSize=${usersPerPage}`, {
+            method: 'GET',
+            headers: getHeaders()
+        });
         if (!response.ok) {
             throw new Error("No se pudo obtener la lista de usuarios");
         }

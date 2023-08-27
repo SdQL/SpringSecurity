@@ -46,6 +46,7 @@ public class SecurityConfig {
                 .csrf(config -> config.disable())
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers("/login","/createUser").permitAll();
+                    auth.requestMatchers("/getUsuarios","/deleteUser/").hasRole("ADMIN");
                     auth.anyRequest().permitAll();
                 })
                 .sessionManagement(session -> {

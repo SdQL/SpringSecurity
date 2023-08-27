@@ -129,7 +129,6 @@ section {
     font-size: 38px;
   }
 }
-
 /*--------------------------------------------------------------
 # Breadcrumbs
 --------------------------------------------------------------*/
@@ -695,9 +694,7 @@ section {
   height: 120px;
   animation-delay: 0s;
   animation: pulsate-btn 2s;
-  animation-direction: forwards;
   animation-iteration-count: infinite;
-  animation-timing-function: steps;
   opacity: 1;
   border-radius: 50%;
   border: 5px solid rgba(13, 66, 255, 0.7);
@@ -786,7 +783,6 @@ section {
 
 .services .card a {
   color: #001973;
-  transition: 0.3;
 }
 
 .services .card a:hover {

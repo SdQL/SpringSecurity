@@ -18,6 +18,8 @@ async function iniciarSesion() {
         })
     });
 
+    const jsonResponse = await response.json();
+
     if (!(response.ok)) {
         swal.fire({
             title: "Usuario o contraseña incorrectos",
@@ -27,7 +29,7 @@ async function iniciarSesion() {
             timer: 1500
         })
     } else {
-        localStorage.token = response;
+        localStorage.token = jsonResponse.token;
         localStorage.username = username ;
         swal.fire({
             title: "Bienvenido",

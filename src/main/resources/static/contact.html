@@ -46,7 +46,7 @@
 
     <a href="index.html" class="logo d-flex align-items-center">
       <!-- Uncomment the line below if you also wish to use an image logo -->
-      <!-- <img src="assets/img/logo.png" alt=""> -->
+      <img src="assets/img/logos/2.png" alt="">
       <h1>Worksy</h1>
     </a>
 
@@ -54,10 +54,15 @@
     <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
     <nav id="navbar" class="navbar">
       <ul>
-        <li><a href="index.html">Inicio</a></li>
+        <li><a href="index.html" class="active">Inicio</a></li>
         <li><a href="about.html">Acerca de</a></li>
-        <li><a href="contact.html" class="active">Contacto</a></li>
-        <li><a class="get-a-quote" href="login.html">Inicia sesión - Registrate</a></li>
+        <li><a href="contact.html">Contacto</a></li>
+        <li><a href="users-table.html">Usuarios</a></li>
+        <li class="dropdown"><a href="login.html"><span>Inicia sesión</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+          <ul>
+            <li><a href="login.html#sign-up">Registrate</a></li>
+          </ul>
+        </li>
       </ul>
     </nav><!-- .navbar -->
 

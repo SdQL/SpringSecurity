@@ -69,6 +69,10 @@
                 <label>
                     <span>Contraseña</span>
                     <input type="password" name="password" id="txtPasswordIniciar">
+                    <div class="input-group-append">
+                        <button id="show_password" class="btn btn-primary" type="button" onclick="mostrarPassword()">
+                            <img src="assets/img/ojo.png"></button>
+                    </div>
                 </label>
                 <button class="submit" type="button" onclick="iniciarSesion()">Iniciar sesión</button>
                 <p class="forgot-pass">¿Olvidaste tu contraseña?</p>
@@ -119,6 +123,7 @@
                             <span>Nombre de usuario</span>
                             <input type="text" id="txtUsername">
                         </label>
+                    </div>
 
                     <div class="input-container">
                         <label>
@@ -228,6 +233,25 @@
 <script src="assets/js/script.js"></script>
 <script src="assets/js/registrar.js"></script>
 <script src="assets/js/login.js"></script>
+<script type="text/javascript">
+    function mostrarPassword(){
+        var cambio = document.getElementById("txtPasswordIniciar");
+        if(cambio.type == "password"){
+            cambio.type = "text";
+            $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+        }else{
+            cambio.type = "password";
+            $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
+        }
+    }
+
+    $(document).ready(function () {
+        //CheckBox mostrar contraseña
+        $('#ShowPassword').click(function () {
+            $('#Password').attr('type', $(this).is(':checked') ? 'text' : 'password');
+        });
+    });
+</script>
 
 </body>
 
