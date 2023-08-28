@@ -1,7 +1,10 @@
 package com.example.controllers;
 
+import com.example.controllers.requestPublicaciones.CreatePublicacionDTO;
+import com.example.controllers.requestPublicaciones.UpdatePublicacionDTO;
 import com.example.models.UserEntity;
 import com.example.repositories.PostRepository;
+import com.example.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -21,16 +24,22 @@ public class PublicacionController {
     @Autowired
     PostRepository postRepository;
 
-    @GetMapping("/getPublicacionesByIdUsuario")
-    public ResponseEntity<List<PostEntity>> getPublicacionesByIdUsuario(@RequestParam Long idUsuario) {
+    @Autowired
+    UserRepository userRepository;
 
-        Optional<List<PostEntity>> postEntityOptional = postRepository.findByIdUsuario(idUsuario);
+    @GetMapping("/getPublicacionesByIdUsuario/{idUsuario}")
+    public ResponseEntity<List<PostEntity>> getPublicacionesByIdUsuario(@PathVariable Long idUsuario,
+                                                                        @RequestParam(defaultValue = "1") int page,
+                                                                        @RequestParam(defaultValue = "6") int pageSize) {
 
-        if (postEntityOptional.isPresent()) {
-            return ResponseEntity.ok(postEntityOptional.get());
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        Pageable pageable = PageRequest.of(page - 1, pageSize);
+        Page<PostEntity> pageResult = postRepository.findByIdUsuario(idUsuario, pageable);
+
+        List<PostEntity> publicaciones = pageResult.getContent();
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("X-Last-Page", String.valueOf(pageResult.getTotalPages())); // Agregamos el encabezado personalizado
+
+        return ResponseEntity.ok().headers(headers).body(publicaciones);
     }
 
     @GetMapping("/getPublicaciones")
@@ -49,36 +58,32 @@ public class PublicacionController {
     }
 
     @PostMapping("/createPublicacion/{idUsuario}")
-    public ResponseEntity<?> createPublicacion(@PathVariable Long idUsuario
-                                                , @RequestParam String header
-                                                , @RequestParam String descripcion
-                                                , @RequestParam Date fecha) {
+    public ResponseEntity<?> createPublicacion(@PathVariable Long idUsuario, @RequestBody CreatePublicacionDTO createPublicacionDTO){
 
-        PostEntity postEntity = PostEntity.builder()
-                .idUsuario(idUsuario)
-                .header(header)
-                .descripcion(descripcion)
-                .fecha(fecha)
-                .build();
+            PostEntity postEntity = PostEntity.builder()
+                    .fecha(createPublicacionDTO.getFecha())
+                    .header(createPublicacionDTO.getHeader())
+                    .ubicacion(createPublicacionDTO.getUbicacion())
+                    .descripcion(createPublicacionDTO.getDescripcion())
+                    .idUsuario(idUsuario)
+                    .build();
 
-        postRepository.save(postEntity);
+            postRepository.save(postEntity);
 
-        return ResponseEntity.ok(postEntity);
+            return ResponseEntity.ok(postEntity);
     }
 
-    @PutMapping("/updatePublicacion/{idPublicacion}")
-    public ResponseEntity<?> updatePublicacion(@PathVariable Long idPublicacion
-                                                , @RequestParam String header
-                                                , @RequestParam String descripcion
-                                                , @RequestParam Date fecha) {
+    @PutMapping("/updatePublicacion/{id}")
+    public ResponseEntity<?> updatePublicacion(@PathVariable Long id, @RequestBody UpdatePublicacionDTO updatePublicacionDTO) {
 
-        Optional<PostEntity> postEntityOptional = postRepository.findById(idPublicacion);
+        Optional<PostEntity> postEntityOptional = postRepository.findById(id);
 
         if (postEntityOptional.isPresent()) {
             PostEntity postEntity = postEntityOptional.get();
-            postEntity.setHeader(header);
-            postEntity.setDescripcion(descripcion);
-            postEntity.setFecha(fecha);
+            postEntity.setFecha(updatePublicacionDTO.getFecha());
+            postEntity.setHeader(updatePublicacionDTO.getHeader());
+            postEntity.setUbicacion(updatePublicacionDTO.getUbicacion());
+            postEntity.setDescripcion(updatePublicacionDTO.getDescripcion());
             postRepository.save(postEntity);
             return ResponseEntity.ok(postEntity);
         } else {
@@ -86,13 +91,13 @@ public class PublicacionController {
         }
     }
 
-    @DeleteMapping("/deletePublicacion/{idPublicacion}")
-    public ResponseEntity<?> deletePublicacion(@PathVariable Long idPublicacion) {
+    @DeleteMapping("/deletePublicacion/{id}")
+    public ResponseEntity<?> deletePublicacion(@PathVariable Long id) {
 
-        Optional<PostEntity> postEntityOptional = postRepository.findById(idPublicacion);
+        Optional<PostEntity> postEntityOptional = postRepository.findById(id);
 
         if (postEntityOptional.isPresent()) {
-            postRepository.deleteById(idPublicacion);
+            postRepository.deleteById(id);
             return ResponseEntity.ok().build();
         } else {
             return ResponseEntity.notFound().build();

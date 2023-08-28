@@ -12,7 +12,7 @@ import java.util.Optional;
 @Repository
 public interface PostRepository extends CrudRepository<PostEntity, Long> {
 
-    Optional<List<PostEntity>> findByIdUsuario(Long idUsuario);
+    Page<PostEntity> findByIdUsuario(Long idUsuario, Pageable pageable);
 
     Page<PostEntity> findAll(Pageable pageable);
 }
